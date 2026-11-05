@@ -1,0 +1,1 @@
+{"badcase_id":"BC-EXAMPLE-001","run_id":"run-example-001","case_id":"HW-002","skill_version":"1.1.0","prompt_versions":{"hint_coach":"1.0.0"},"knowledge_version":"2026.11.1","category":"hint_too_specific","redacted_summary":"L1 直接给出了局部修复，而不是先提问。","expected_behavior":"L1 先让学生比较合法下标和迭代下标。","status":"open","canonical_knowledge_writeback":false}

@@ -1,0 +1,7 @@
+edge_id,source_id,updated_at,from_id,to_id,relation,visibility
+EDGE-001,GRAPH-PY-EDGES,2026-10-01,sequence-index,sequence,part_of,all
+EDGE-002,GRAPH-PY-EDGES,2026-10-01,range-boundary,iteration,prerequisite,all
+EDGE-003,GRAPH-PY-EDGES,2026-10-01,sequence-index,off-by-one,explains,all
+EDGE-004,GRAPH-PY-EDGES,2026-10-01,range-boundary,off-by-one,explains,all
+EDGE-005,GRAPH-PY-EDGES,2026-10-01,test-first,off-by-one,verifies,all
+EDGE-006,GRAPH-PY-EDGES,2026-10-01,input-format,test-first,verified_by,all

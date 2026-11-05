@@ -1,0 +1,17 @@
+{
+  "knowledge_version": "2026.11.1",
+  "package_version": "1.1.0",
+  "updated_at": "2026-11-05",
+  "files": [
+    { "path": "curriculum/syllabus.md", "source_id": "CUR-PY-101", "format": "markdown", "visibility": "all", "updated_at": "2026-09-01" },
+    { "path": "labs/lab-01.md", "source_id": "LAB-PY-01", "format": "markdown", "visibility": "all", "updated_at": "2026-09-08" },
+    { "path": "errors/common_errors.jsonl", "source_id": "ERR-PY-COMMON", "format": "jsonl", "visibility": "all", "updated_at": "2026-10-20" },
+    { "path": "rubrics/teacher_rubric.md", "source_id": "RUBRIC-PY-101", "format": "markdown", "visibility": "all", "updated_at": "2026-09-01" },
+    { "path": "cases/anonymized_cases.jsonl", "source_id": "CASE-PY-ANON", "format": "jsonl", "visibility": "all", "updated_at": "2026-10-22" },
+    { "path": "variants/variant_questions.jsonl", "source_id": "VARIANT-PY-101", "format": "jsonl", "visibility": "all", "updated_at": "2026-10-25" },
+    { "path": "graph/nodes.csv", "source_id": "GRAPH-PY-NODES", "format": "csv", "visibility": "all", "updated_at": "2026-10-01" },
+    { "path": "graph/edges.csv", "source_id": "GRAPH-PY-EDGES", "format": "csv", "visibility": "all", "updated_at": "2026-10-01" }
+  ],
+  "conflict_policy": "teacher_rubric > course > lab > case; user-provided problem statement is authoritative for the current task; expose unresolved conflicts",
+  "persistence": "files-only"
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CodeTutor X tutoring state",
+  "type": "object",
+  "required": [
+    "mode",
+    "tests",
+    "evidence",
+    "hint_level",
+    "citations",
+    "execution_status",
+    "knowledge_version",
+    "prompt_versions"
+  ],
+  "properties": {
+    "mode": { "enum": ["homework", "practice", "exam_review"] },
+    "problem_summary": { "type": ["string", "null"] },
+    "clarified_spec": { "type": "object" },
+    "tests": { "type": "array", "items": { "type": "object" } },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["origin", "summary"],
+        "properties": {
+          "origin": { "enum": ["user", "tool", "knowledge"] },
+          "summary": { "type": "string" },
+          "observed_at": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "diagnosis": { "type": "object" },
+    "hint_level": { "type": "integer", "minimum": 0, "maximum": 3 },
+    "review": { "type": "object" },
+    "concept_ids": { "type": "array", "items": { "type": "string" } },
+    "citations": { "type": "array", "items": { "type": "string" } },
+    "execution_status": { "enum": ["not_run", "user_reported", "tool_executed", "tool_failed"] },
+    "knowledge_version": { "type": "string" },
+    "prompt_versions": { "type": "object" }
+  }
+}

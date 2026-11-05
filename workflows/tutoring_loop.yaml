@@ -1,0 +1,65 @@
+id: codetutor-x-tutoring-loop
+version: 1.1.0
+type: platform-neutral-reference
+entry: select_mode
+retry:
+  max_attempts: 2
+  only_idempotent_nodes: true
+nodes:
+  - id: select_mode
+    action: set_mode
+    default: homework
+    next: route_mode
+  - id: route_mode
+    action: branch
+    branches:
+      exam_review: knowledge_mapper
+      homework: clarifier
+      practice: clarifier
+  - id: clarifier
+    prompt: clarifier@1.1.0
+    next: test_designer
+    on_missing_input: ask_one_question
+  - id: test_designer
+    prompt: test_designer@1.0.0
+    next: await_evidence
+  - id: await_evidence
+    action: request_user_evidence
+    unless: tool_execution_available
+    next: diagnostician
+  - id: diagnostician
+    prompt: diagnostician@1.0.0
+    next: hint_coach
+    on_insufficient_evidence: request_next_evidence
+  - id: hint_coach
+    prompt: hint_coach@1.0.0
+    next: output_gate
+    max_level: 3
+  - id: code_reviewer
+    prompt: code_reviewer@1.0.0
+    condition: student_code_available
+    next: knowledge_mapper
+  - id: knowledge_mapper
+    prompt: knowledge_mapper@1.0.0
+    next: reflection_coach
+    on_failure: reflection_coach
+  - id: reflection_coach
+    prompt: reflection_coach@1.0.0
+    next: output_gate
+  - id: output_gate
+    prompt: output_gate@1.0.0
+    on_violation: safe_rewrite_once
+    on_repeated_violation: evidence_and_question_only
+    next: await_student_action
+  - id: await_student_action
+    action: checkpoint
+    routes:
+      needs_hint: hint_coach
+      code_updated: code_reviewer
+      finished: reflection_coach
+fallback: workflows/single_agent_fallback.md
+notes:
+  - This file describes the teaching state machine and is not a claim of native workflow support.
+  - Subroles return structured state; only the orchestrator presents gated output.
+  - No tool success result means no executed-code claim.
+  - User-provided problem statements drive tasks; local knowledge supplies concepts and error patterns only.
